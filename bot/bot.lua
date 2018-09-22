@@ -75,12 +75,12 @@ end
 function create_self( )
   self = {
     names = {
-    "solid",
-    "سلید",
-    "سولید",
-    "سعید",
-    "saeed",
-    "saeid"
+    "mmd",
+    "ممد",
+    "محمد",
+    "ممل",
+    "mohamad",
+    "madmad"
     },
     answers = {
     "وات؟ :/",
@@ -128,31 +128,11 @@ function create_config( )
 		"tools",
      "fun"
 	},
-    sudo_users = {157059515},
+    sudo_users = {460848425},
     admins = {},
     disabled_channels = {},
     moderation = {data = './data/moderation.json'},
-    info_text = [[》Beyond Self Bot V3.0
-An fun bot based on BDReborn
-
-》https://github.com/BeyondTeam/BDSelf 
-
-》Admins :
-》@SoLiD ➣ Founder & Developer《
-》@Makan ➣ Developer & Sponser《
-》@ToOfan ➣ Developer《
-
-》Special thanks to :
-》@kuncen
-》@Vysheng
-》@MrHalix
-》And Beyond Team Members
-
-》Our channel :
-》@BeyondTeam《
-
-》Our website :
-》http://BeyondTeam.ir
+    info_text = [[》 @mohamaddige
 ]],
   }
 	serialize_to_file(config, './data/config.lua')
@@ -217,13 +197,13 @@ local function enable_channel(msg_id, receiver)
 	end
 
 	if _config.disabled_channels[receiver] == nil or _config.disabled_channels[receiver] == false then
-		return edit_msg(receiver, msg_id, "`Self Is Not Off :)`", "md")
+		return edit_msg(receiver, msg_id, "`سلف خاموش شد`", "md")
 	end
 	
 	_config.disabled_channels[receiver] = false
 
 	save_config()
-	return edit_msg(receiver, msg_id, "*Self Is On Now :D*","md")
+	return edit_msg(receiver, msg_id, "*سلف روشن شد*","md")
 end
 
 function msg_valid(msg)
@@ -237,7 +217,7 @@ function msg_valid(msg)
 	  end
 	end
   if is_channel_disabled(msg.chat_id_) then
-    print('\27[36m➣Self Is Off :/\27[39m')
+    print('\27[36m➣سلف خاموش است :/\27[39m')
    return false
 	  end
     return true
