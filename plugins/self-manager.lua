@@ -42,10 +42,10 @@ local function show_bot_settings(msg)
         muteall = '[Disable]'
     end
 if msg.to.type == 'channel' then
-    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Mute All :_ *'..muteall..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*@BeyondTeam*《*'
+    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Mute All :_ *'..muteall..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*─═ঈঊ(➊)ঊঈ═─*《*'
 return edit_msg(msg.to.id, msg.id, text, "md")
 elseif msg.to.type == 'pv' or msg.to.type == 'chat' then
-    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*@BeyondTeam*《*'
+    text = text..'_》Auto Leave :_ *'..autoleave..'*\n_》Messages Read :_ *'..markread..'*\n_》Pv Max Flood :_ *['..MSG_NUM_MAX..']*\n_》Pv Flood Time Check :_ *['..TIME_CHECK..']*\n_》Pv Flood Protection :_ *'..antiflood..'*\n*》*─═ঈঊ(➊)ঊঈ═─*《*'
 return edit_msg(msg.to.id, msg.id, text, "md")
    end
 end
@@ -58,7 +58,7 @@ local function disable_channel(msg, receiver)
  _config.disabled_channels[receiver] = true
 
  save_config()
- return edit_msg(msg.to.id, msg.id, "*Self Is Off Now :/*", "md")
+ return edit_msg(msg.to.id, msg.id, "*سلف خاموش شد*", "md")
 end
 
 local function pre_process(msg)
@@ -237,141 +237,141 @@ local hash = 'anti-flood'
 if matches[1] == 'help' and is_sudo(msg) then
 
 local text = [[
-*Commands:*
+*⌨دستورات:*
 
 *!settings*
-_Send Self Bot Settings_
+_⚙تنظیمات_
 
 *!gpid*
-_Show Group Id_
+_🔶ایدی  گروه_
 
 *!tosuper*
-_Change Chat To Channel_
+_🔷تبدیل به سوپر گروه_
 
 *!chatlist*
-_Show Name List_
+_🔶نشان دادن اسم ها_
 
 *!chat + name answer*
-_Set Chat Name And Answer_
+_🔷تنظیم اسم گروه  و جواب_
 
 *!chat - name*
-_Disabeled Chatting in Group_
+_🔶غیر فعال کردن چت در (اسم گروه)_
 
 *!chat clean*
-_Clean Name And Answers_
+_🔷پاک کردن چت و جواب ها_
 
 *!delmy*`[name | username]`
-_Delete Name Or Username_
+_🔷حذف اسم یا یوزرنیم من_
 
 *!markread* `[on | off]`
-_Change Markread Status_
+_🔶خواندن پیام_
 
 *!autoleave* `[on | off]`
-_Set Auto Leave Status_
+_🔷خروج خودکار_
 
 *!antiflood* `[on | off]`
-_Set Anfi Flood Status_
+_🔶حساسیت پیام تکراری_
 
 *!self* `[on | off]`
-_Set Self Bot Status In Group_
+_🔷ربات در گروه فعال \غیر فعال شود_
 
 *!pin* `(reply)`
-_Pin Your Message In Group_
+_🔶پین کردن پیام در گروه_
 
 *!unpin*
-_Unpin Your Message In Group_
+_🔷از پین دراوردن پیام_
 
 *!id* `[reply | username]`
-_Show User Id_
+_🔶نشان دادن ایدی عددی_
 
-*!del* (reply)
-_Delete Message_
+*!dil* (reply)
+_🔷حذف پیام_
 
 *!inv* `[id | username | reply]`
-_Invite User To Group_
+_🔶دعوت کسی به گروه_
 
 *!kick* `[id | username | reply]`
-_Kick User From Group_
+_🔷اخراج کاربر_
 
 *!delall* `[id | username | reply]`
-_Delete All Messages Of User_
+_🔶همه پیام های یک شخص حذف شود_
 
 *!mute* `all`
-_Mute Group_
+_🔷گروه بیصدا_
 
 *!unmute* `all`
-_UnMute Group_
+_🔶فعال کردن گروه_
 
 *!set*`[name | des | link]`
-_Set Group Name , Description , Link_
+_🔷تنظیم نام گروه , بیو , لینک_
 
 *!addplugin* _text_ `name.lua`
-_Create Your Own Plugin_
+_🔶اضافه کردن پلاگین شما_
 
 *!delplugin* `name`
-_Delete Plugin_
+_🔷حذف پلاگین_
 
 *!setmy*`[name | username]` *(name|username)*
-_Set Your Name or Your Username_
+_🔶تنظیم اسم یا یوزر من_
 
 *!addcontact* `[phone | firstname | lastname]`
-_Added A New Contact_
+_🔷اضافه کردن مخاطب_
 
 *!delcontact* `[phone]`
-_Delete Contact_
+_🔶حذف مخاطب_
 
 *!addname* `[name]`
-_Add New Name To Name List_
+_🔷اضافه کردن نام به لیست_
 
 *!remname* `[name]`
-_Remove Name From Name List_
+_🔶حذف یک اسم_
 
 *!setanswer* `[answer]`
-_Add New Answer To Answer List_
+_🔷تنظیم یک جواب_
 
 *!remanswer* `[answer]`
-_Remove Answer From Answer List_
+_🔶حذف یک جواب_
 
 *!namelist*
-_Show Names List_
+_🔷نشان دادن اسم های ذخیره شده_
 
 *!answerlist*
-_Show Answers List_
+_🔶لیست جواب های ربات_
 
 *!pvsetflood* `[msgs]`
-_Tet The Maximum Messages In A Floodtime To Be Considered As Flood_
+_🔷حد اکثر پیام ارسالی به پیوی_
 
 *!pvfloodtime* `[secs]`
-_Set The Time That Bot Uses To Check Flood_
+_🔶زمان چک کردن پیام های تکراری در پیوی_
 
 *!block* `[reply | id | username]`
-_Block User_
+_🔷مسدود کردن کاربر_
 
 *!unblock* `[reply | id | username]`
-_UnBlock User_
+_🔶از مسدود خارج کن_
 
 *!sendfile* `[folder] [file]`
-_Send file from folder_
+_🔷ارسال فایل_
 
 *!sendplug* `[plug]`
-_Send plugin_
+_🔶ارسال پلاگین_
 
 *!save* `[plugin name] [reply]`
-_Save plugin by reply_
+_🔷ذخیره پلاگین_
 
 *!savefile* `[adress/filename] [reply]`
-_Save File by reply to specific folder_
+_🔶ذخیر یک فایل با ریپلی_
 
 *!edit* `[text] [reply]`
-_Edit Your meesage by reply to specific message_
+_🔷ویرایش پیام شما_
 
 *!clear cache*
-_Clear All Cache Of .telegram-cli/data_
+_🔶پاک کردن پوشه .telegram-cli/data_
 
-*!helpfun*
-_Show Fun Help_
+*!helpp*
+_🔷راهنمای گزینه های اضافی_
 
-*Good Luck ;)*]]
+*موفق باشید:)*]]
 
 tdcli.sendMessage(msg.sender_user_id_, "", 0, text, 0, "md")
             return edit_msg(msg.to.id, msg.id, '_Help was send in your private message_', "md")

@@ -87,7 +87,7 @@ local function action_by_reply(arg, data)
    local msg = arg.msg
    local cmd = arg.cmd
   if data.sender_user_id_ then
-    if cmd == "visudo" then
+    if cmd == "addsudo" then
 local function visudo_cb(arg, data)
 if data.username_ then
 user_name = '@'..check_markdown(data.username_)
@@ -107,7 +107,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, visudo_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-    if cmd == "desudo" then
+    if cmd == "remsudo" then
 local function desudo_cb(arg, data)
 if data.username_ then
 user_name = '@'..check_markdown(data.username_)
@@ -144,7 +144,7 @@ local function action_by_username(arg, data)
    local cmd = arg.cmd
    local msg = arg.msg
   if data.id_ then
-    if cmd == "visudo" then
+    if cmd == "addsudo" then
 if already_sudo(tonumber(data.id_)) then
     return edit_msg(arg.chat_id, msg.id, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *sudoer*", "md")
    end
@@ -153,7 +153,7 @@ if already_sudo(tonumber(data.id_)) then
      reload_plugins(true)
     return edit_msg(arg.chat_id, msg.id, "_User_ "..user_name.." *"..data.id_.."* _is now_ *sudoer*", "md")
 end
-    if cmd == "desudo" then
+    if cmd == "remsudo" then
      if not already_sudo(data.id_) then
     return edit_msg(arg.chat_id, msg.id, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *sudoer*", "md")
    end
@@ -269,13 +269,13 @@ if matches[1] == "clear cache" and tonumber(msg.from.id) == our_id then
     return edit_msg(msg.to.id, msg.id, "*All Cache Has Been Cleared*", "md")
    end
    if tonumber(msg.from.id) == tonumber(our_id) then
- if matches[1] == "visudo" then
+ if matches[1] == "addsudo" then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="visudo",msg=msg})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="addsudo",msg=msg})
 end
   if matches[2] and string.match(matches[2], '^%d+$') and not msg.reply_id then
 if already_sudo(tonumber(matches[2])) then
@@ -290,16 +290,16 @@ if already_sudo(tonumber(matches[2])) then
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="visudo",msg=msg})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="addsudo",msg=msg})
          end
       end
- if matches[1] == "desudo" then
+ if matches[1] == "remsudo" then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="desudo",msg=msg})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="remsudo",msg=msg})
 end
   if matches[2] and string.match(matches[2], '^%d+$') and not msg.reply_id then
      if not already_sudo(matches[2]) then
@@ -314,7 +314,7 @@ end
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="desudo",msg=msg})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="remsudo",msg=msg})
          end
       end
    end
@@ -356,7 +356,7 @@ end
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="unblock",msg=msg})
          end
       end
-if matches[1] == 'addplugin' and is_sudo(msg) then 
+if matches[1] == 'addplug' and is_sudo(msg) then 
 if not is_sudo(msg) then 
 return edit_msg(msg.to.id, msg.id, '_You Are Not Allowed To Add Plugin_', "md")
 end 
@@ -369,7 +369,7 @@ file:close()
 return edit_msg(msg.to.id, msg.id, '_Plugin_ *['..matches[3]..']* _Has Been Added_', "md")
 end
 
-if matches[1] == "delplugin" and is_sudo(msg) then	 
+if matches[1] == "delplug" and is_sudo(msg) then	 
 if not is_sudo(msg) then 
 return edit_msg(msg.to.id, msg.id, "_You Are Not Allow To Delete Plugins!_", "md")
 end 
@@ -388,7 +388,7 @@ matches[3] then
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
 		tdcli.sendDocument(msg.chat_id_, msg.id_,0, 
-1, nil, send_file, '@BeyondTeam', dl_cb, nil)
+1, nil, send_file, '─═ঈঊ(➊)ঊঈ═─', dl_cb, nil)
 	end
 	if matches[1]:lower() == "sendplug" and matches[2] then
 	    local plug = "./plugins/"..matches[2]..".lua"
@@ -398,7 +398,7 @@ matches[3] then
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
 		tdcli.sendDocument(msg.chat_id_, msg.id_,0, 
-1, nil, plug, '@BeyondTeam', dl_cb, nil)
+1, nil, plug, '─═ঈঊ(➊)ঊঈ═─', dl_cb, nil)
     end
   end
 
@@ -635,13 +635,13 @@ end
  end
 return { 
 patterns = { 
-"^[!/#](visudo)$", 
-"^[!/#](desudo)$",
+"^[!/#](addsudo)$", 
+"^[!/#](remsudo)$",
 "^[!/#](sudolist)$",
-"^[!/#](visudo) (.*)$", 
-"^[!/#](desudo) (.*)$",
-"^[!/#](addplugin) (.*) (.+)$",
-"^[!/#](delplugin) (.*)$",
+"^[!/#](addsudo) (.*)$", 
+"^[!/#](remsudo) (.*)$",
+"^[!/#](addplug) (.*) (.+)$",
+"^[!/#](delplug) (.*)$",
 "^[!/#](chatlist)$",
 "^[#!/](chat) (+) ([^%s]+) (.+)$",
 "^[#!/](chat) (clean)$",

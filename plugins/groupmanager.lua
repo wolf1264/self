@@ -1,5 +1,4 @@
---begin groupmanager by @BeyondTeam :)
---This Is Self Bot Based On BDReborn :D
+--begin groupmanager by @mohamaddige
 local function action_by_reply(arg, data)
    local cmd = arg.cmd
    local msg = arg.msg
@@ -251,7 +250,7 @@ end
   if matches[1] == "silentlist" then
     return edit_msg(msg.to.id, msg.id, silented_user_list(msg.to.id), "md")
   end
-if matches[1] == "del" then
+if matches[1] == "dil" then
    del_msg(msg.to.id, msg.reply_id)
 del_msg(msg.to.id, msg.id)
 end
@@ -290,7 +289,7 @@ patterns = {
 "^[!/#](delall)$",
 "^[!/#](delall) (.*)$", 
 "^[!/#](gpid)$",
-"^[!/#](del)$", 
+"^[!/#](dil)$", 
 "^[!/#](tosuper)$", 
 "^[!/#](setname) (.*)$",
 "^[!/#](link)$",

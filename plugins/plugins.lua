@@ -22,7 +22,7 @@ local function plugin_exists( name )
 end
 
 local function list_all_plugins(msg, only_enabled)
-  local tmp = '\n\n@BeyondTeam'
+  local tmp = '\n\n─═ঈঊ(➊)ঊঈ═─'
   local text = ''
   local nsum = 0
   for k, v in pairs( plugins_names( )) do
@@ -68,7 +68,7 @@ local function list_plugins(msg, only_enabled)
      -- text = text..v..'  '..status..'\n'
     end
   end
-  local text = text.."\n_🔃All Plugins Reloaded_\n\n"..nact.." *✔️Plugins Enabled*\n"..nsum.." *📂Plugins Installed*\n\n@BeyondTeam"
+  local text = text.."\n_🔃All Plugins Reloaded_\n\n"..nact.." *✔️Plugins Enabled*\n"..nsum.." *📂Plugins Installed*\n\n─═ঈঊ(➊)ঊঈ═─"
 return edit_msg(msg.to.id, msg.id, text, "md")
 end
 

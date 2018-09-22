@@ -1,22 +1,4 @@
---[[
-################################
-#                              #
-#        Self Plugin           #
-#                              #
-#                              #
-#     by @SoLiD ⇨Saeid⇦       #
-#                              #
-#                              #
-#   Team Channel @BeyondTeam   #
-#	                       #
-#                              #
-#     Update: 2 March 2017     #
-#                              #
-#       Special Thx To         # 
-#     @Exacute for idea        #
-#                              #
-################################
-]]
+--[[@mohamaddige]]
 do
 local function self_names( name )
   for k,v in pairs(_self.names) do
@@ -45,7 +27,7 @@ end
 
 local function namelist(msg)
 local namelist = _self.names
-local text = "*Names list :*\n"
+local text = "*لیست اسم ها*\n"
 for i=1,#namelist do
     text = text..i.." - "..namelist[i].."\n"
 end
@@ -54,7 +36,7 @@ end
 
 local function answerlist(msg)
 local answerlist = _self.answers
-local text = "*Answers list :*\n"
+local text = "*لیست جواب ها :*\n"
 for i=1,#answerlist do
     text = text..i.." - "..answerlist[i].."\n"
 end
@@ -143,16 +125,15 @@ if self_names(matches[1]) then
 end
 return {
 patterns = {
-"^[!/]([Aa]ddname) (.*)$",
-"^[!/]([Rr]emname) (.*)$",
-"^[!/]([Nn]amelist)$",
-"^[!/]([Ss]etanswer) (.*)$",
-"^[!/]([Rr]emanswer) (.*)$",
-"^[!/]([Aa]nswerlist)$",
+"^[#!/]([Aa]ddname) (.*)$",
+"^[#!/]([Rr]emname) (.*)$",
+"^[#!/]([Nn]amelist)$",
+"^[#!/]([Ss]etanswer) (.*)$",
+"^[#!/]([Rr]emanswer) (.*)$",
+"^[#!/]([Aa]nswerlist)$",
 "^(.*)$"
 },
 run = run
 }
 
 end
---End self.lua By @SoLiD

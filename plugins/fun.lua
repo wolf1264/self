@@ -1,6 +1,5 @@
 do
---Begin Fun.lua By @BeyondTeam
---Special Thx To @To0fan
+--Begin Fun.lua @mohamaddige
 --------------------------------
 
 local function run_bash(str)
@@ -66,7 +65,7 @@ local function get_weather(location)
 	local weather = json:decode(b)
 	local city = weather.name
 	local country = weather.sys.country
-	local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________\n @BeyondTeam :)'
+	local temp = 'دمای شهر '..city..' هم اکنون '..weather.main.temp..' درجه سانتی گراد می باشد\n____________________\n ─═ঈঊ(➊)ঊঈ═─'
 	local conditions = 'شرایط فعلی آب و هوا : '
 	if weather.weather[1].main == 'Clear' then
 		conditions = conditions .. 'آفتابی☀'
@@ -88,7 +87,7 @@ local function calc(exp)
 	b,c = http.request(url)
 	text = nil
 	if c == 200 then
-    text = 'Result = '..b..'\n____________________\n @BeyondTeam :)'
+    text = 'Result = '..b..'\n____________________\n ─═ঈঊ(➊)ঊঈ═─'
 	elseif c == 400 then
 		text = b
 	else
@@ -123,51 +122,49 @@ function file_exi(name, path, suffix)
 end
 --------------------------------
 function run(msg, matches) 
-if matches[1] == "helpfun" and is_sudo(msg) then
+if matches[1] == "helpp" and is_sudo(msg) then
 local text = [[
-_Self Bot Fun Help Commands:_
-
+_♨️راهنمای فان ربات :⚙_
+ ─═ঈঊ(➊)ঊঈ═─
 *!time*
-_Get time in a sticker_
+_➕دریافت ساعت به صورت استیکر_
 
 *!short* `[link]`
-_Make short url_
+_➕کوتاه کننده لینک_
 
 *!voice* `[text]`
-_Convert text to voice_
+_➕تبدیل متن به صدا_
 
 *!tr* `[lang] [word]`
-_Translates FA to EN and EN to FA_
-_Example:_
-*!tr fa hi*
+_➕ترجمه متن فارسی به انگلیسی وبرعکس_
+_➕مثال:_
+*!tr en سلام*
 
 *!sticker* `[word]`
-_Convert text to sticker_
+_➕تبدیل متن به استیکر_
 
 *!photo* `[word]`
-_Convert text to photo_
+_➕تبدیل متن به عکس_
 
 *!azan* `[city]`
-_Get Azan time for your city_
+_➕دریافت اذان_
 
 *!calc* `[number]`
-Calculator
+_➕ماشین حساب_
 
 *!praytime* `[city]`
-_Get Patent (Pray Time)_
+_➕اعلام ساعات شرعی_
 
 *!tosticker* `[reply]`
-_Convert photo to sticker_
+_➕تبدیل عکس به استیکر_
 
 *!tophoto* `[reply]`
-_Convert text to photo_
+_➕تبدیل استیکر‌به عکس_
 
 *!weather* `[city]`
-_Get weather_
+_➕دریافت اب وهوا_
 
-_You can use_ *[!/#]* _at the beginning of commands._
-
-*Good luck ;)*]]
+_🔘شما میتوانید از [!/#] در اول دستورات برای اجرای آنها بهره بگیرید._]]
 tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
         return edit_msg(msg.to.id, msg.id, "_Fun help was send in your private message_", "md")
     end
@@ -196,11 +193,11 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
 		text = text..'\nغروب آفتاب: '..data.Sunset
 		text = text..'\nاذان مغرب: '..data.Maghrib
 		text = text..'\nعشاء : '..data.Isha
-		text = text..'\n@BeyondTeam\n'
+		text = text..'\n─═ঈঊ(➊)ঊঈ═─\n'
         return edit_msg(msg.to.id, msg.id, text, "html")
 	end
 --------------------------------
-	if matches[1]:lower() == 'tophoto' and is_sudo(msg) and msg.reply_id then
+	if matches[1]:lower() == 'p' and is_sudo(msg) and msg.reply_id then
 		function tophoto(arg, data)
 			function tophoto_cb(arg,data)
 				if data.content_.sticker_ then
@@ -220,7 +217,7 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
        else
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
-						tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, pfile, "@BeyondTeam", dl_cb, nil)
+						tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, pfile, "─═ঈঊ(➊)ঊঈ═─", dl_cb, nil)
 					else
          edit_msg(msg.to.id, msg.id, '_This sticker does not exist. Send sticker again._', "md")
 					end
@@ -233,7 +230,7 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
 		tdcli_function ({ ID = 'GetMessage', chat_id_ = msg.chat_id_, message_id_ = msg.reply_id }, tophoto, nil)
     end
 --------------------------------
-	if matches[1]:lower() == 'tosticker' and is_sudo(msg) and msg.reply_id then
+	if matches[1]:lower() == 's' and is_sudo(msg) and msg.reply_id then
 		function tosticker(arg, data)
 			function tosticker_cb(arg,data)
 				if data.content_.ID == 'MessagePhoto' then
@@ -247,7 +244,7 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
        else
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
-						tdcli.sendDocument(msg.chat_id_, 0, 0, 1, nil, pfile, '@BeyondTeam', dl_cb, nil)
+						tdcli.sendDocument(msg.chat_id_, 0, 0, 1, nil, pfile, '─═ঈঊ(➊)ঊঈ═─', dl_cb, nil)
 					else
          edit_msg(msg.to.id, msg.id, '_This photo does not exist. Send sticker again._', "md")
 					end
@@ -260,7 +257,7 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
 		tdcli_function ({ ID = 'GetMessage', chat_id_ = msg.chat_id_, message_id_ = msg.reply_id }, tosticker, nil)
     end
 --------------------------------
-	if matches[1]:lower() == 'weather' and is_sudo(msg) then
+	if matches[1]:lower() == 'w' and is_sudo(msg) then
 		city = matches[2]
 		local wtext = get_weather(city)
 		if not wtext then
@@ -288,7 +285,7 @@ tdcli.sendMessage(msg.from.id, 0, 1, text, 1, 'md')
 
 	end
 --------------------------------
-if matches[1] == 'voice' and is_sudo(msg) then
+if matches[1] == 'v' and is_sudo(msg) then
  local text = matches[2]
     textc = text:gsub(' ','.')
     
@@ -296,13 +293,13 @@ if matches[1] == 'voice' and is_sudo(msg) then
       return nil
       else
   local url = "http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&text="..textc
-  local file = download_to_file(url,'Self-BotV2.mp3')
+  local file = download_to_file(url,'ROBOT.mp3')
    if msg.to.type == "channel" then
     del_msg(msg.to.id, msg.id)
        else
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
- 				tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, '@BeyondTeam', dl_cb, nil)
+ 				tdcli.sendDocument(msg.to.id, 0, 0, 1, nil, file, '─═ঈঊ(➊)ঊঈ═─', dl_cb, nil)
    end
 end
 
@@ -310,7 +307,7 @@ end
 	if matches[1] == "tr" and is_sudo(msg) then 
 		url = https.request('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160119T111342Z.fd6bf13b3590838f.6ce9d8cca4672f0ed24f649c1b502789c9f4687a&format=plain&lang='..URL.escape(matches[2])..'&text='..URL.escape(matches[3]))
 		data = json:decode(url)
-		local text = 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________\n @BeyondTeam :)'
+		local text = 'زبان : '..data.lang..'\nترجمه : '..data.text[1]..'\n____________________\n ─═ঈঊ(➊)ঊঈ═─'
    return edit_msg(msg.to.id, msg.id, text, "md")
 	end
 --------------------------------
@@ -326,7 +323,7 @@ end
 		local data = json:decode(bitly)
 		local u2s = http.request('http://u2s.ir/?api=1&return_text=1&url='..URL.escape(shortlink))
 		local llink = http.request('http://llink.ir/yourls-api.php?signature=a13360d6d8&action=shorturl&url='..URL.escape(shortlink)..'&format=simple')
-		local text = ' 🌐لینک اصلی :\n'..check_markdown(data.data.long_url)..'\n\nلینکهای کوتاه شده با 6 سایت کوتاه ساز لینک : \n》کوتاه شده با bitly :\n___________________________\n'..(check_markdown(data.data.url) or '---')..'\n___________________________\n》کوتاه شده با u2s :\n'..(check_markdown(u2s) or '---')..'\n___________________________\n》کوتاه شده با llink : \n'..(check_markdown(llink) or '---')..'\n___________________________\n》لینک کوتاه شده با yon : \nyon.ir/'..(check_markdown(jdat.output) or '---')..'\n____________________\n@BeyondTeam'
+		local text = ' 🌐لینک اصلی :\n'..check_markdown(data.data.long_url)..'\n\nلینکهای کوتاه شده با 6 سایت کوتاه ساز لینک : \n》کوتاه شده با bitly :\n___________________________\n'..(check_markdown(data.data.url) or '---')..'\n___________________________\n》کوتاه شده با u2s :\n'..(check_markdown(u2s) or '---')..'\n___________________________\n》کوتاه شده با llink : \n'..(check_markdown(llink) or '---')..'\n___________________________\n》لینک کوتاه شده با yon : \nyon.ir/'..(check_markdown(jdat.output) or '---')..'\n____________________\n─═ঈঊ(➊)ঊঈ═─'
 		return edit_msg(msg.to.id, msg.id, text, "html")
 	end
 --------------------------------
@@ -381,20 +378,20 @@ end
        else
      edit_msg(msg.to.id, msg.id, "😐", "md")
    end
-		tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, file, "@BeyondTeam", dl_cb, nil)
+		tdcli.sendPhoto(msg.to.id, 0, 0, 1, nil, file, "─═ঈঊ(➊)ঊঈ═─", dl_cb, nil)
 	end
 end
 end
 --------------------------------
 return {               
 	patterns = {
-		"^[#!/](helpfun)$",
+		"^[#!/](helpp)$",
 		"^[!/#](weather) (.*)$",
 		"^[!/](calc) (.*)$",
 		"^[#!/](time)$",
-		"^[#!/](tophoto)$",
-		"^[#!/](tosticker)$",
-		"^[!/#](voice) +(.*)$",
+		"^[#!/](p)$",
+		"^[#!/](s)$",
+		"^[!/#](v) +(.*)$",
 		"^[/!#]([Pp]raytime) (.*)$",
 		"^[/!#](praytime)$",
 		"^[/!#]([Aa]zan) (.*)$",
@@ -407,4 +404,4 @@ return {
 	run = run,
 	}
 
---#by @BeyondTeam :)
+--#by @mohamaddige
